@@ -1,11 +1,24 @@
 const router = require("express").Router();
 const Unit = require("../../db/models/unit");
 
+// Matches '/api/units'
 router.route("/")
   .get(function(req, res) {
     Unit.find()
     .then(dbModel => res.json(dbModel));
     // TODO: do i need arrow functions here?
+  })
+
+// Matches 'api/units/:id'
+router.route("/:id")
+  .get(function(req, res) {
+    Unit.findOne({
+      "unit": req.params.id
+    }, function(err, unit) {
+      if (err) res.send(err);
+
+      res.json(unit);
+    })
   })
 
 // Adding unit

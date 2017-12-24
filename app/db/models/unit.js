@@ -23,6 +23,10 @@ let unitSchema = new Schema({
     default: false
   },
 
+  lease_start: {
+    type: Date
+  },
+
   last_modified: {
     type: Date,
     default: Date.now
