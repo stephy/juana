@@ -7,10 +7,15 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "mongoose": "^4.13.7"
+    "mongoose": "^4.13.7",
+    "morgan": "^1.9.0"
   },
-
   "scripts": {
-    "seed:units": "node app/scripts/dbUnitSeed.js"
+    "server": "node server.js",
+    "client": "node app/scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "db:seed:units": "node app/scripts/dbUnitSeed.js",
+    "db:seed:users": "node app/scripts/dbUserSeed.js",
+    "db:seed:buildings": "node app/scripts/dbBuildingSeed.js"
   }
 }

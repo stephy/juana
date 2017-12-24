@@ -2,3 +2,6 @@
 
 # Private data
 /app/scripts/dbUnitSeed.js
+
+# Log files
+/logs
