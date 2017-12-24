@@ -1,2 +1,4 @@
 /node_modules
 
+# Private data
+/app/scripts/dbUnitSeed.js
