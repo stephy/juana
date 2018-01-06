@@ -4,16 +4,20 @@ import axios from "axios";
 class App extends Component {
 
   state = {
-    "units": null
+    "units": {}
   };
 
   componentDidMount() {
-  
-    axios.get('/api/units')
-      .then(res => console.log(res.data))
-      // .then(res => this.setState("units": res.data))
-      .catch(err => console.log(err))
+    this.loadUnits();
+    console.log(this.state);
   }
+
+  loadUnits = () => {
+    axios.get('/api/units/')
+      .then(res => this.setState({units: res.data}))
+      // .then(res => console.log(res.data))
+      .catch(err => console.log(err))
+  };
 
   render() {
     return (
