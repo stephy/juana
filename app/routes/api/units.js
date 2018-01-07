@@ -1,51 +1,61 @@
 const router = require("express").Router();
 const Unit = require("../../db/models/unit");
 
-// Matches '/api/units'
-router.route("/")
-  .get(function(req, res) {
-    Unit.find()
-    .then(dbModel => res.json(dbModel));
-    // TODO: do i need arrow functions here?
-  })
+// ========================================================
+// UNIT ROUTES ============================================
+// ========================================================
+
+
+// Matches '/api/units/all'
+router.get("/all", function(req, res) {
+  Unit.find()
+    .then(function(units) {
+      res.json(units);
+    })
+    .catch(function(err) {
+      res.json(err);
+    })
+})
 
 // Matches 'api/units/:id'
-router.route("/:id")
-  .get(function(req, res) {
-    Unit.findOne({
-      "unit": req.params.id
-    }, function(err, unit) {
-      if (err) res.send(err);
-
+router.get("/:unitId", function(req, res) {
+  Unit.findOne({ "unit": req.params.unitId})
+    .then(function(unit) {
       res.json(unit);
     })
-  })
+    .catch(function(err) {
+      res.json(err);
+    })
+})
 
-// Adding unit
-router.route("/add")
-  .post(function(req, res) {
-    
-    Unit.create(
-      {
-        unit: req.body.unit,
-        rent: req.body.rent
-      }, function(err, unit) {
-        if (err) console.log(err);
-        res.send(unit);
-      })
-  })
+// Matches 'api/units/add'
+router.post("/add", function(req, res) {
+  Unit.create({ unit: req.body.unit, rent: req.body.rent })
+    .then(function(unit) {
+      res.json(unit);
+    })
+    .catch(function(err) {
+      res.json(err);
+    })
+})
 
 // Updating a unit
+// TODO: requires update
 router.route("/update/:id")
   .post(function(req, res) {
     res.send(`Updating unit #${req.params.id}`);
   })
 
-// Removing a unit
-router.route("/remove/:id")
-  .post(function(req, res) {
-    res.send(`Removing unit #${req.params.id}`);
-  })
-
+// Removes an existing unit
+// Matches '/api/units/remove/:unitId"'
+router.get("/remove/:unitId", function(req, res) {
+  Unit.remove({ "unit": req.params.unitId })
+    .then(function(unit) {
+      res.json(unit);
+    })
+    .catch(function(err) {
+      res.json(err);
+    })
+})
 
 module.exports = router;

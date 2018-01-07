@@ -14,8 +14,6 @@
     "server": "node server.js",
     "client": "node app/scripts/start-client.js",
     "start": "concurrently \"nodemon server.js\" \"npm run client\"",
-    "db:seed:units": "node app/scripts/dbUnitSeed.js",
-    "db:seed:users": "node app/scripts/dbUserSeed.js",
-    "db:seed:buildings": "node app/scripts/dbBuildingSeed.js"
+    "db:seed:units": "node app/scripts/dbUnitSeed.js"
   }
 }
