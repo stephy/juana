@@ -5,10 +5,13 @@ const bodyParser  = require("body-parser");
 const mongoose    = require("mongoose");
 const morgan      = require("morgan");
 const routes      = require("./app/routes");
-
+const helpers     = require("./app/utils/helpers");
 
 // Creating Express App
 const app = express();
+
+// Creates Log dir if it does not exist
+helpers.checkDirectorySync("./logs");
 
 // create a write stream (in append mode)
 let accessLogStream = fs.createWriteStream(
