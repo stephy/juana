@@ -11,6 +11,9 @@ const Nav = () =>
     </div>
 
     <div className="navbar-start">
+      <a className="navbar-item" href="/overview">
+        Overview
+      </a>
       <a className="navbar-item" href="/rentroll">
         Rent Roll
       </a>
@@ -19,7 +22,7 @@ const Nav = () =>
     <div className="navbar-end">
       <div className="navbar-item">
         <p className="control">
-          <a className="button is-dark" href="/login">
+          <a className="button is-primary is-outlined is-inverted" href="/login">
             <span className="icon">
               <i className="fa fa-sign-in-alt"></i>
             </span>

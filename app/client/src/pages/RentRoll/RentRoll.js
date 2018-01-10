@@ -23,17 +23,23 @@ class RentRoll extends Component {
 
   render() {
     return (
-      <div>
-        <h1>There are {this.state.units.length} units.</h1>
-        <ul>
-          {this.state.units.map(unit => (
-            <li>{unit.unit}</li>
-          ))}
-        </ul>
+      <div className="section">
+        <div className="container">
+          <h1 className="title">Rent roll for month of xxx</h1>
+          <div className="columns">
+            <div className="column is-one-third">
+              {this.state.units.map(unit => (
+                <div className="box">
+                  #{unit.unit}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
 
 }
 
-export default RentRoll
+export default RentRoll;
