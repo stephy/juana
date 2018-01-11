@@ -4,8 +4,11 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const mongoose    = require("mongoose");
 const morgan      = require("morgan");
+const winston     = require("winston");
 const routes      = require("./app/routes");
 const helpers     = require("./app/utils/helpers");
+
+// TODO: setup winston here
 
 // Creating Express App
 const app = express();

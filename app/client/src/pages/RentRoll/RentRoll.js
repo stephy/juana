@@ -25,10 +25,15 @@ class RentRoll extends Component {
   // Lots of components can be created here
   render() {
     return (
-      <div className="section">
+      <div className="container-fluid">
+        <div className="hero is-info">
+          <div className="hero-body">
+            <h1 className="title is-size-1">Rent Roll</h1>
+            <h2 className="subtitle is-size-5">February 2018</h2>
+          </div>
+        </div>
+        <br />
         <div className="container">
-          <h1 className="title is-size-1">Rent Roll</h1>
-          <h2 className="subtitle is-size-5">February 2018</h2>
           <div className="columns">
             <div className="column is-one-third">
               {this.state.units.map(unit => (
@@ -50,7 +55,7 @@ class RentRoll extends Component {
                     </div>
                     <nav className="level is-mobile">
                       <div className="level-left">
-                        <a class="level-item">
+                        <a className="level-item">
                           <span className="icon is-small"><i className="fas fa-edit"></i></span>
                         </a>
                       </div>
