@@ -2,28 +2,56 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import ReactTable from 'react-table'
+
 class RentRoll extends Component {
 
+/*
   state = {
     units: []
   }
 
   componentDidMount() {
     this.loadUnits();
-    console.log(this.state);
   }
 
   loadUnits = () => {
     axios.get("api/units/all")
       .then(res =>
-        this.setState({ units: res.data })
+        // this.setState({ units: res.data })
+        console.log(res.data)
       )
       .catch(err => console.log(err))
   };
+*/
 
-  // TODO: requires major refactoring 
-  // Lots of components can be created here
   render() {
+
+    const data = [{
+      name: 'Tanner Linsley',
+      age: 26,
+      friend: {
+        name: 'Jason Maurer',
+        age: 23,
+      }
+    }]
+
+    const columns = [{
+        Header: 'Name',
+        accessor: 'name' // String-based value accessors!
+      }, {
+        Header: 'Age',
+        accessor: 'age',
+        Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
+      }, {
+        id: 'friendName', // Required because our accessor is not a string
+        Header: 'Friend Name',
+        accessor: d => d.friend.name // Custom value accessors!
+      }, {
+        Header: props => <span>Friend Age</span>, // Custom header components!
+        accessor: 'friend.age'
+      }]
+
     return (
       <div className="container-fluid">
         <div className="hero is-info">
@@ -34,38 +62,10 @@ class RentRoll extends Component {
         </div>
         <br />
         <div className="container">
-          <div className="columns">
-            <div className="column is-one-third">
-              {this.state.units.map(unit => (
-                <div className="box">
-                  <article className="media">
-                      <div className="media-left">
-                        <figure className="image is-64x64 is-rounded">
-                          <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"/>
-                        </figure>
-                      </div>
-                  <div className="media-content">
-                    <div className="content">
-                      <p>
-                        <strong>#{unit.unit}</strong>
-                        <small> rent: ${unit.rent}</small>
-                        <br />
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                      </p>
-                    </div>
-                    <nav className="level is-mobile">
-                      <div className="level-left">
-                        <a className="level-item">
-                          <span className="icon is-small"><i className="fas fa-edit"></i></span>
-                        </a>
-                      </div>
-                    </nav>
-                  </div>
-                  </article>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ReactTable
+            data={data}
+            columns={columns}
+          />
         </div>
       </div>
     )
