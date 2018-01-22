@@ -6,9 +6,9 @@ const Unit = require("../../db/models/unit");
 // ========================================================
 
 
-// Matches '/api/units/all'
+// Matches GET '/api/units/all'
 router.get("/all", function(req, res) {
-  Unit.find({}, 'unit rent tenants')
+  Unit.find()
     .then(function(units) {
       res.json(units);
     })
@@ -17,7 +17,7 @@ router.get("/all", function(req, res) {
     })
 })
 
-// Matches 'api/units/:id'
+// Matches GET 'api/units/:id'
 router.get("/:unitId", function(req, res) {
   Unit.findOne({ "unit": req.params.unitId})
     .then(function(unit) {
@@ -28,7 +28,7 @@ router.get("/:unitId", function(req, res) {
     })
 })
 
-// Matches 'api/units/add'
+// Matches POST 'api/units/add'
 router.post("/add", function(req, res) {
   Unit.create({ unit: req.body.unit, rent: req.body.rent })
     .then(function(unit) {
@@ -47,7 +47,7 @@ router.route("/update/:id")
   })
 
 // Removes an existing unit
-// Matches '/api/units/remove/:unitId"'
+// Matches GET '/api/units/remove/:unitId"'
 router.get("/remove/:unitId", function(req, res) {
   Unit.remove({ "unit": req.params.unitId })
     .then(function(unit) {

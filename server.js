@@ -31,9 +31,7 @@ app.use(bodyParser.json());
 // Loading Routes
 app.use(routes);
 
-mongoose.connect('mongodb://localhost/juana', 
-  { useMongoClient: true }
-);
+mongoose.connect('mongodb://localhost/juana');
 mongoose.Promise = global.Promise;
 
 app.listen(3001, function() {
