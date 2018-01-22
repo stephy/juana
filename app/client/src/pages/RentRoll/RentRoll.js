@@ -1,56 +1,56 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
-import ReactTable from 'react-table'
+import ReactTable from 'react-table';
+import "react-table/react-table.css";
+import moment from "moment";
 
 class RentRoll extends Component {
 
-/*
+
   state = {
     units: []
   }
 
   componentDidMount() {
     this.loadUnits();
+    console.log(this.state)
   }
 
   loadUnits = () => {
     axios.get("api/units/all")
       .then(res =>
-        // this.setState({ units: res.data })
-        console.log(res.data)
+        this.setState({ units: res.data })
       )
       .catch(err => console.log(err))
   };
-*/
+
 
   render() {
 
-    const data = [{
-      name: 'Tanner Linsley',
-      age: 26,
-      friend: {
-        name: 'Jason Maurer',
-        age: 23,
+    const columns = [
+      {
+        Header: 'Unit',
+        accessor: 'unit',
+        maxWidth: 60
+      }, 
+      {
+        Header: 'Tenants',
+        accessor: 'tenants'
+      },
+      {
+        Header: 'Monthly Rent',
+        accessor: 'rent'
+      },
+      {
+        Header: 'Status',
+        accessor: 'status'
+      },
+      {
+        Header: 'Comments',
+        accessor: 'comments'
       }
-    }]
-
-    const columns = [{
-        Header: 'Name',
-        accessor: 'name' // String-based value accessors!
-      }, {
-        Header: 'Age',
-        accessor: 'age',
-        Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
-      }, {
-        id: 'friendName', // Required because our accessor is not a string
-        Header: 'Friend Name',
-        accessor: d => d.friend.name // Custom value accessors!
-      }, {
-        Header: props => <span>Friend Age</span>, // Custom header components!
-        accessor: 'friend.age'
-      }]
+    ]
 
     return (
       <div className="container-fluid">
@@ -63,8 +63,11 @@ class RentRoll extends Component {
         <br />
         <div className="container">
           <ReactTable
-            data={data}
+            data={this.state.units}
             columns={columns}
+            showPagination={false}
+            minRows={0}
+            className="-striped -highlight"
           />
         </div>
       </div>

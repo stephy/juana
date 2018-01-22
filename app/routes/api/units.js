@@ -8,7 +8,7 @@ const Unit = require("../../db/models/unit");
 
 // Matches '/api/units/all'
 router.get("/all", function(req, res) {
-  Unit.find()
+  Unit.find({}, 'unit rent tenants')
     .then(function(units) {
       res.json(units);
     })
