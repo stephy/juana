@@ -14,6 +14,8 @@ const routes      = require("./app/routes");
 const helpers     = require("./app/utils/helpers");
 const PORT        = process.env.PORT || 3001
 
+// require("./app/config/passport")(passport);
+
 // Creating Express App
 const app = express();
 
@@ -72,6 +74,6 @@ app.use(routes);
 mongoose.connect('mongodb://localhost/juana');
 mongoose.Promise = global.Promise;
 
-app.listen(app.get(PORT), function() {
+app.listen(PORT, function() {
   console.log(`Server running on port ${PORT}`);
 })
